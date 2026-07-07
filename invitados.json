@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "nombre": "Derel Portorreal",
+    "mesa": "Mesa de Honor (Mesa 1)",
+    "acompanantes": ["Familia Portorreal"],
+    "mensaje": "¡Qué alegría contar contigo y tu familia en este gran día! Gracias por ser parte de nuestra historia."
+  },
+  {
+    "id": 2,
+    "nombre": "María Rodríguez",
+    "mesa": "Mesa 3",
+    "acompanantes": ["Juan Pérez"],
+    "mensaje": "¡María, nos encanta que nos acompañes hoy! Disfruta mucho de la noche."
+  },
+  {
+    "id": 3,
+    "nombre": "Juan Pérez",
+    "mesa": "Mesa 3",
+    "acompanantes": ["María Rodríguez"],
+    "mensaje": "¡Juan! Gracias por estar aquí para celebrar nuestro amor. ¡A bailar y disfrutar!"
+  },
+  {
+    "id": 4,
+    "nombre": "Sofía Martínez",
+    "mesa": "Mesa 2",
+    "acompanantes": [],
+    "mensaje": "Sofía, tu presencia hace que este día sea aún más especial para nosotros. ¡Gracias por venir!"
+  },
+  {
+    "id": 5,
+    "nombre": "Carlos Gómez",
+    "mesa": "Mesa 4",
+    "acompanantes": ["Lucía Gómez", "Ana Gómez"],
+    "mensaje": "Familia Gómez, estamos sumamente agradecidos de que estén compartiendo este momento tan importante con nosotros."
+  },
+  {
+    "id": 6,
+    "nombre": "Lucía Gómez",
+    "mesa": "Mesa 4",
+    "acompanantes": ["Carlos Gómez", "Ana Gómez"],
+    "mensaje": "Familia Gómez, estamos sumamente agradecidos de que estén compartiendo este momento tan importante con nosotros."
+  },
+  {
+    "id": 7,
+    "nombre": "Ana Gómez",
+    "mesa": "Mesa 4",
+    "acompanantes": ["Carlos Gómez", "Lucía Gómez"],
+    "mensaje": "Familia Gómez, estamos sumamente agradecidos de que estén compartiendo este momento tan importante con nosotros."
+  },
+  {
+    "id": 8,
+    "nombre": "Pedro Almonte",
+    "mesa": "Mesa 5",
+    "acompanantes": ["Elena Santana"],
+    "mensaje": "¡Pedro y Elena! Bienvenidos a nuestra boda. Nos hace muy felices verlos aquí."
+  },
+  {
+    "id": 9,
+    "nombre": "Elena Santana",
+    "mesa": "Mesa 5",
+    "acompanantes": ["Pedro Almonte"],
+    "mensaje": "¡Elena y Pedro! Bienvenidos a nuestra boda. Nos hace muy felices verlos aquí."
+  }
+]

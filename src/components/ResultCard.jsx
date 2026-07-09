@@ -29,7 +29,7 @@ export default function ResultCard({ guest, onReset }) {
   };
 
   const handleWhatsAppRSVP = () => {
-    const message = `¡Hola Sofía y Alejandro! Confirmo mi asistencia a su boda. Mi nombre es ${guest.nombre} y estaré asignado(a) en la ${guest.mesa}. ¡Qué gran alegría acompañarles en este día! ✨`;
+    const message = `¡Hola Desiré y Joel! Confirmo mi asistencia a su boda. Mi nombre es ${guest.nombre} y estaré asignado(a) en la ${guest.mesa}. ¡Qué gran alegría acompañarles en este día! ✨`;
     const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
@@ -40,11 +40,11 @@ export default function ResultCard({ guest, onReset }) {
   };
 
   const handleAddToCalendar = () => {
-    const title = 'Boda de Sofía & Alejandro';
+    const title = 'Boda de Desiré y Joel';
     const details = '¡Celebración de nuestra boda! Acompáñanos a compartir nuestro amor.';
     const location = 'Santo Domingo, República Dominicana';
-    const startDate = '20261024T180000'; // Oct 24, 2026 at 6:00 PM
-    const endDate = '20261025T020000'; // Oct 25, 2026 at 2:00 AM
+    const startDate = '20261204T180000'; // Dec 4, 2026 at 6:00 PM
+    const endDate = '20261205T020000'; // Dec 5, 2026 at 2:00 AM
     
     const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
     window.open(gCalUrl, '_blank');
@@ -81,7 +81,7 @@ export default function ResultCard({ guest, onReset }) {
             <div className="table-number">{guest.mesa}</div>
           </div>
           <div className="ticket-bottom">
-            <span className="ticket-footer-text">Sofía &amp; Alejandro • 24.10.2026</span>
+            <span className="ticket-footer-text">Desiré y Joel • 04.12.2026</span>
           </div>
         </motion.div>
 

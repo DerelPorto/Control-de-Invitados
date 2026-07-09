@@ -97,6 +97,115 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
     document.body.removeChild(link);
   };
 
+  const handlePrintCard = () => {
+    if (!canvasRef.current) return;
+    const qrImageSrc = canvasRef.current.toDataURL('image/png');
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Imprimir Invitación - Desiré y Joel</title>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+          
+          body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            font-family: 'Caveat', cursive, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #c5a059;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+          }
+          .card {
+            width: 450px;
+            height: 600px;
+            box-sizing: border-box;
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+          }
+          .title {
+            font-size: 3.8rem;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            color: #c5a059;
+          }
+          .subtitle {
+            font-size: 2.3rem;
+            line-height: 1.4;
+            margin: 0;
+            font-weight: 500;
+          }
+          .qr-container {
+            margin: 15px 0;
+            padding: 5px;
+            background: #ffffff;
+            display: inline-block;
+          }
+          .qr-container img {
+            width: 180px;
+            height: 180px;
+            display: block;
+          }
+          .footer-names {
+            font-size: 3.1rem;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+          }
+          .footer-date {
+            font-size: 2.2rem;
+            margin: 0;
+            font-weight: 500;
+          }
+          @media print {
+            body {
+              min-height: auto;
+            }
+            .card {
+              border: none;
+              box-shadow: none;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="card">
+          <div>
+            <h1 class="title">¡Bienvenidos!</h1>
+            <p class="subtitle">Escanea el código QR<br>y descubre tu mesa</p>
+          </div>
+          <div class="qr-container">
+            <img src="${qrImageSrc}" alt="Código QR">
+          </div>
+          <div>
+            <h2 class="footer-names">Desiré y Joel</h2>
+            <p class="footer-date">04 de Diciembre de 2026</p>
+          </div>
+        </div>
+        <script>
+          window.onload = function() {
+            setTimeout(function() {
+              window.print();
+              window.close();
+            }, 300);
+          };
+        </script>
+      </body>
+      </html>
+    `);
+    printWindow.document.close();
+  };
+
   const handleCopyLink = () => {
     navigator.clipboard.writeText(qrUrl)
       .then(() => {
@@ -396,21 +505,31 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
                             <canvas ref={canvasRef}></canvas>
                           </div>
 
-                          <div style={{ display: 'flex', gap: '10px', width: '100%', justifyContent: 'center' }}>
+                          <div style={{ display: 'flex', gap: '10px', width: '100%', justifyContent: 'center', flexWrap: 'wrap' }}>
                             {hasQr && (
-                              <button
-                                className="btn-primary"
-                                onClick={handleDownload}
-                                style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '0 16px', fontSize: '0.82rem', flexGrow: 1, justifyContent: 'center' }}
-                              >
-                                <Download size={15} />
-                                Descargar QR
-                              </button>
+                              <>
+                                <button
+                                  className="btn-primary"
+                                  onClick={handleDownload}
+                                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '0 16px', fontSize: '0.82rem', flex: '1 1 calc(50% - 5px)', justifyContent: 'center' }}
+                                >
+                                  <Download size={15} />
+                                  Descargar QR
+                                </button>
+                                <button
+                                  className="btn-primary"
+                                  onClick={handlePrintCard}
+                                  style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '0 16px', fontSize: '0.82rem', flex: '1 1 calc(50% - 5px)', justifyContent: 'center' }}
+                                >
+                                  <QrCode size={15} />
+                                  Imprimir Tarjeta
+                                </button>
+                              </>
                             )}
                             <button
                               className="btn-secondary"
                               onClick={handleCopyLink}
-                              style={{ display: 'flex', alignItems: 'center', gap: '6px', flexGrow: 1, justifyContent: 'center', fontSize: '0.82rem' }}
+                              style={{ display: 'flex', alignItems: 'center', gap: '6px', flex: '1 1 100%', justifyContent: 'center', fontSize: '0.82rem' }}
                             >
                               {copied ? <Check size={15} /> : <Copy size={15} />}
                               {copied ? 'Copiado' : 'Copiar Enlace'}
@@ -640,7 +759,7 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
         )}
       </AnimatePresence>
 
-      <p className="copyright">Con amor • Sofía &amp; Alejandro</p>
+      <p className="copyright">Con amor • Desiré y Joel</p>
     </footer>
   );
 }

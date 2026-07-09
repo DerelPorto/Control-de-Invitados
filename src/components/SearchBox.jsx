@@ -41,9 +41,9 @@ export default function SearchBox({
 
   return (
     <section className="search-section card">
-      <h2 className="section-title">Busca tu Nombre</h2>
+      <h2 className="section-title">Descubre tu mesa</h2>
       <p className="section-description">
-        Ingresa tu nombre y apellido para conocer tu mesa asignada e información de la recepción.
+        Ingresa tu nombre y apellido para conocer la mesa asignada.
       </p>
 
       <div className="search-box-wrapper">

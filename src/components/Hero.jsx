@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   const calculateTimeLeft = () => {
-    // Event date: October 24, 2026 at 18:00:00 (6:00 PM)
-    const targetDate = new Date('2026-10-24T18:00:00');
+    // Event date: December 04, 2026 at 18:00:00 (6:00 PM)
+    const targetDate = new Date('2026-12-04T18:00:00');
     const difference = +targetDate - +new Date();
     
     let timeLeft = {
@@ -64,8 +64,8 @@ export default function Hero() {
         </motion.svg>
       </div>
       
-      <h1 className="couple-names">Sofía &amp; Alejandro</h1>
-      <p className="wedding-subtitle">Nuestra Boda • 24 de Octubre, 2026</p>
+      <h1 className="couple-names">Desiré y Joel</h1>
+      <p className="wedding-subtitle">Nuestra Boda • 04 de Diciembre, 2026</p>
 
       {/* Countdown Timer */}
       <div className="countdown-container">

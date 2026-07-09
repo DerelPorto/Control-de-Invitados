@@ -1,21 +1,21 @@
 /* Root Theme Variables */
 :root {
-    --bg-base: #faf8f5;
-    --bg-card: rgba(255, 255, 255, 0.82);
+    --bg-base: #ffffff;
+    --bg-card: #ffffff;
     --gold-primary: #c5a059;
     --gold-light: #dfba6b;
     --gold-dark: #8c6d34;
     --gold-gradient: linear-gradient(135deg, #dfba6b 0%, #c5a059 50%, #8c6d34 100%);
     --gold-glow: rgba(197, 160, 89, 0.15);
-    --text-primary: #2d2a26;
-    --text-muted: #6e6a64;
+    --text-primary: #8c6d34;
+    --text-muted: #b0965d;
     --text-light: #fff;
     --border-color: rgba(197, 160, 89, 0.2);
     --border-color-hover: rgba(197, 160, 89, 0.45);
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    --shadow-soft: 0 10px 30px -10px rgba(45, 42, 38, 0.06);
-    --shadow-medium: 0 20px 45px -15px rgba(45, 42, 38, 0.1);
+    --shadow-soft: 0 10px 30px -10px rgba(197, 160, 89, 0.06);
+    --shadow-medium: 0 20px 45px -15px rgba(197, 160, 89, 0.1);
     --shadow-gold: 0 12px 30px -10px rgba(197, 160, 89, 0.3);
     --radius-sm: 8px;
     --radius-md: 16px;
@@ -177,14 +177,14 @@ body {
 }
 
 .countdown-box {
-    background: rgba(255, 255, 255, 0.45);
+    background: #ffffff;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(197, 160, 89, 0.15);
+    border: 1px solid rgba(197, 160, 89, 0.22);
     border-radius: 12px;
     padding: 10px 4px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(45, 42, 38, 0.02);
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.05);
 }
 
 .countdown-val {
@@ -441,7 +441,7 @@ body {
     top: 50%;
     width: 18px;
     height: 18px;
-    background-color: var(--bg-base);
+    background-color: #ffffff;
     border-radius: 50%;
     transform: translateY(-50%);
     border: 1px solid rgba(197, 160, 89, 0.25);

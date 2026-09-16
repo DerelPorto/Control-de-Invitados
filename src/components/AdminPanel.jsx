@@ -355,13 +355,23 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
     setDeleteConfirmId(null);
   };
 
+  const normalizeString = (str) => {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
+  };
+
   const filteredGuests = guests.filter(guest => {
-    const query = adminSearchQuery.toLowerCase();
-    return (
-      guest.nombre.toLowerCase().includes(query) ||
-      (guest.mesa && guest.mesa.toLowerCase().includes(query)) ||
-      (guest.acompanantes && guest.acompanantes.some(c => c.toLowerCase().includes(query)))
-    );
+    const query = normalizeString(adminSearchQuery);
+    if (!query) return true;
+
+    const nombreMatch = normalizeString(guest.nombre).includes(query);
+    const mesaMatch = normalizeString(guest.mesa).includes(query);
+
+    return nombreMatch || mesaMatch;
   });
 
   return (

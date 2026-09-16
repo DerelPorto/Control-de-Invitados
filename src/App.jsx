@@ -70,8 +70,8 @@ export default function App() {
 
   // Helper to remove accents/diacritics and convert to lowercase
   const normalizeString = (str) => {
-    if (!str) return '';
-    return str
+    if (str === null || str === undefined) return '';
+    return String(str)
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
@@ -88,10 +88,8 @@ export default function App() {
 
     const filtered = guests.filter((guest) => {
       const guestNameMatch = normalizeString(guest.nombre).includes(query);
-      const companionMatch = guest.acompanantes && guest.acompanantes.some(
-        (companion) => normalizeString(companion).includes(query)
-      );
-      return guestNameMatch || companionMatch;
+      const tableMatch = normalizeString(guest.mesa).includes(query);
+      return guestNameMatch || tableMatch;
     });
 
     setSuggestions(filtered);

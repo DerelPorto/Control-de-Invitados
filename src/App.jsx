@@ -25,11 +25,22 @@ export default function App() {
     }
   }, []);
 
+  const GUEST_DATA_VERSION = '2026.09.29-v3';
+
   // Fetch guests on mount (checking localStorage ONLY for admin users)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const isAdminParam = params.get('admin') === 'true';
     const isAuthSession = typeof window !== 'undefined' && sessionStorage.getItem('wedding_admin_auth') === 'true';
+
+    // Clear stale cache if data version changed
+    if (typeof window !== 'undefined') {
+      const storedVersion = localStorage.getItem('wedding_guests_version');
+      if (storedVersion !== GUEST_DATA_VERSION) {
+        localStorage.removeItem('wedding_guests');
+        localStorage.setItem('wedding_guests_version', GUEST_DATA_VERSION);
+      }
+    }
 
     if (isAdminParam || isAuthSession) {
       const localData = localStorage.getItem('wedding_guests');
@@ -89,7 +100,8 @@ export default function App() {
     const filtered = guests.filter((guest) => {
       const guestNameMatch = normalizeString(guest.nombre).includes(query);
       const tableMatch = normalizeString(guest.mesa).includes(query);
-      return guestNameMatch || tableMatch;
+      const seatMatch = normalizeString(guest.asiento).includes(query);
+      return guestNameMatch || tableMatch || seatMatch;
     });
 
     setSuggestions(filtered);

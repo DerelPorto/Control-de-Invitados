@@ -41,7 +41,7 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
 
   // Form State
   const [formMode, setFormMode] = useState(null); // 'add', 'edit' or null
-  const [formGuest, setFormGuest] = useState({ id: '', nombre: '', mesa: '', mensaje: '', acompanantes: [] });
+  const [formGuest, setFormGuest] = useState({ id: '', nombre: '', mesa: '', asiento: '', mensaje: '', acompanantes: [] });
   const [newCompanionName, setNewCompanionName] = useState('');
 
   // Load auth state from sessionStorage on mount
@@ -266,6 +266,7 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
           id: g.id || Date.now() + idx,
           nombre: g.nombre,
           mesa: g.mesa || 'Mesa 1',
+          asiento: g.asiento || '',
           acompanantes: Array.isArray(g.acompanantes) ? g.acompanantes : [],
           mensaje: g.mensaje || ''
         }));
@@ -324,6 +325,7 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
         id: newId,
         nombre: formGuest.nombre.trim(),
         mesa: formGuest.mesa.trim(),
+        asiento: formGuest.asiento ? formGuest.asiento.trim() : '',
         mensaje: formGuest.mensaje.trim()
       };
       updatedGuests = [...guests, newGuest];
@@ -334,6 +336,7 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
             ...formGuest,
             nombre: formGuest.nombre.trim(),
             mesa: formGuest.mesa.trim(),
+            asiento: formGuest.asiento ? formGuest.asiento.trim() : '',
             mensaje: formGuest.mensaje.trim()
           }
           : g
@@ -345,7 +348,10 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
   };
 
   const handleEditClick = (guest) => {
-    setFormGuest({ ...guest });
+    setFormGuest({
+      ...guest,
+      asiento: guest.asiento || ''
+    });
     setFormMode('edit');
   };
 
@@ -370,8 +376,9 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
 
     const nombreMatch = normalizeString(guest.nombre).includes(query);
     const mesaMatch = normalizeString(guest.mesa).includes(query);
+    const asientoMatch = normalizeString(guest.asiento).includes(query);
 
-    return nombreMatch || mesaMatch;
+    return nombreMatch || mesaMatch || asientoMatch;
   });
 
   return (
@@ -619,7 +626,7 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
                                     <div className="guest-info-col">
                                       <span className="guest-name-txt">{guest.nombre}</span>
                                       <span className="guest-meta-txt">
-                                        {guest.mesa || 'Sin mesa asignada'} • {guest.acompanantes ? guest.acompanantes.length : 0} acomp.
+                                        {guest.mesa || 'Sin mesa asignada'}{guest.asiento ? ` • ${guest.asiento}` : ''} • {guest.acompanantes ? guest.acompanantes.length : 0} acomp.
                                       </span>
                                     </div>
                                     <div className="guest-actions-col">
@@ -687,6 +694,16 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
                                 placeholder="Ej. Mesa 5"
                                 value={formGuest.mesa}
                                 onChange={(e) => setFormGuest({ ...formGuest, mesa: e.target.value })}
+                              />
+                            </div>
+
+                            <div className="form-group">
+                              <label>Asiento asignado</label>
+                              <input
+                                type="text"
+                                placeholder="Ej. Asiento 1"
+                                value={formGuest.asiento || ''}
+                                onChange={(e) => setFormGuest({ ...formGuest, asiento: e.target.value })}
                               />
                             </div>
 

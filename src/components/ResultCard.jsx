@@ -29,7 +29,8 @@ export default function ResultCard({ guest, onReset }) {
   };
 
   const handleWhatsAppRSVP = () => {
-    const message = `¡Hola Desiré y Joel! Confirmo mi asistencia a su boda. Mi nombre es ${guest.nombre} y estaré asignado(a) en la ${guest.mesa}. ¡Qué gran alegría acompañarles en este día! ✨`;
+    const seatInfo = guest.asiento ? ` (${guest.asiento})` : '';
+    const message = `¡Hola Desiré y Joel! Confirmo mi asistencia a su boda. Mi nombre es ${guest.nombre} y estaré asignado(a) en la ${guest.mesa}${seatInfo}. ¡Qué gran alegría acompañarles en este día! ✨`;
     const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
@@ -79,6 +80,11 @@ export default function ResultCard({ guest, onReset }) {
           <div className="ticket-top">
             <div className="table-label">Tu Mesa Asignada</div>
             <div className="table-number">{guest.mesa}</div>
+            {guest.asiento && (
+              <div className="ticket-seat-badge">
+                <span>{guest.asiento}</span>
+              </div>
+            )}
           </div>
           <div className="ticket-bottom">
             <span className="ticket-footer-text">Desiré y Joel • 04.12.2026</span>

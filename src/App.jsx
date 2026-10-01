@@ -25,7 +25,7 @@ export default function App() {
     }
   }, []);
 
-  const GUEST_DATA_VERSION = '2026.09.29-v3';
+  const GUEST_DATA_VERSION = '2026.09.29-v4';
 
   // Fetch guests on mount (checking localStorage ONLY for admin users)
   useEffect(() => {

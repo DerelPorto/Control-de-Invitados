@@ -31,19 +31,19 @@ export default function ResultCard({ guest, onReset }) {
   const handleWhatsAppRSVP = () => {
     const seatInfo = guest.asiento ? ` (${guest.asiento})` : '';
     const message = `¡Hola Desiré y Joel! Confirmo mi asistencia a su boda. Mi nombre es ${guest.nombre} y estaré asignado(a) en la ${guest.mesa}${seatInfo}. ¡Qué gran alegría acompañarles en este día! ✨`;
-    const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/18299617447?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
   const handleLocation = () => {
     // Elegant wedding venue coordinates or address
-    window.open('https://maps.google.com/?q=Santo+Domingo,+Republica+Dominicana', '_blank');
+    window.open('https://maps.app.goo.gl/3Wv1B9NwKEm6h31h8', '_blank');
   };
 
   const handleAddToCalendar = () => {
     const title = 'Boda de Desiré y Joel';
     const details = '¡Celebración de nuestra boda! Acompáñanos a compartir nuestro amor.';
-    const location = 'Santo Domingo, República Dominicana';
+    const location = 'Hodelpa Nicolás de Ovando, Santo Domingo, República Dominicana (https://maps.app.goo.gl/3Wv1B9NwKEm6h31h8)';
     const startDate = '20261204T180000'; // Dec 4, 2026 at 6:00 PM
     const endDate = '20261205T020000'; // Dec 5, 2026 at 2:00 AM
     

@@ -37,7 +37,7 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
   // Navigation & Operations State
   const [currentTab, setCurrentTab] = useState('qr'); // 'qr' or 'guests'
   const [adminSearchQuery, setAdminSearchQuery] = useState('');
-  const [deleteConfirmId, setDeleteConfirmId] = useState(null);
+  const [deleteConfirmId, setDeleteConfirmId] = useSta-te(null);
 
   // Form State
   const [formMode, setFormMode] = useState(null); // 'add', 'edit' or null

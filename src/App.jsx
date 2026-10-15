@@ -13,17 +13,13 @@ export default function App() {
   const [guests, setGuests] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
 
-  const [isAdminModeActive, setIsAdminModeActive] = useState(false);
-
-  // Check for admin query parameter
-  useEffect(() => {
+  const [isAdminModeActive, setIsAdminModeActive] = useState(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
-      if (params.get('admin') === 'true') {
-        setIsAdminModeActive(true);
-      }
+      return params.get('admin') === 'true';
     }
-  }, []);
+    return false;
+  });
 
   const GUEST_DATA_VERSION = '2026.09.29-v4';
 

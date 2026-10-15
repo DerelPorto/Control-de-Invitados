@@ -21,8 +21,6 @@ import QRCode from 'qrcode';
 const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'Sole2026';
 
 export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }) {
-  if (!isAdminModeActive) return null;
-
   const [isOpen, setIsOpen] = useState(false);
   const [qrUrl, setQrUrl] = useState('https://mi-boda.com');
   const [hasQr, setHasQr] = useState(false);
@@ -37,7 +35,7 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
   // Navigation & Operations State
   const [currentTab, setCurrentTab] = useState('qr'); // 'qr' or 'guests'
   const [adminSearchQuery, setAdminSearchQuery] = useState('');
-  const [deleteConfirmId, setDeleteConfirmId] = useSta-te(null);
+  const [deleteConfirmId, setDeleteConfirmId] = useState(null);
 
   // Form State
   const [formMode, setFormMode] = useState(null); // 'add', 'edit' or null
@@ -85,6 +83,8 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
       }, 150);
     }
   }, [isOpen, currentTab, qrUrl, isAuthenticated]);
+
+  if (!isAdminModeActive) return null;
 
   const handleDownload = () => {
     if (!canvasRef.current) return;

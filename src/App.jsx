@@ -21,14 +21,10 @@ export default function App() {
     return false;
   });
 
-  const GUEST_DATA_VERSION = '2026.09.29-v4';
+  const GUEST_DATA_VERSION = '2026.10.16-v1';
 
-  // Fetch guests on mount (checking localStorage ONLY for admin users)
+  // Fetch guests on mount
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const isAdminParam = params.get('admin') === 'true';
-    const isAuthSession = typeof window !== 'undefined' && sessionStorage.getItem('wedding_admin_auth') === 'true';
-
     // Clear stale cache if data version changed
     if (typeof window !== 'undefined') {
       const storedVersion = localStorage.getItem('wedding_guests_version');
@@ -38,35 +34,29 @@ export default function App() {
       }
     }
 
-    if (isAdminParam || isAuthSession) {
-      const localData = localStorage.getItem('wedding_guests');
-      if (localData) {
-        try {
-          setGuests(JSON.parse(localData));
-          return;
-        } catch (e) {
-          console.error('Error parsing wedding_guests from localStorage, reloading...', e);
-        }
+    const localData = typeof window !== 'undefined' ? localStorage.getItem('wedding_guests') : null;
+    if (localData) {
+      try {
+        setGuests(JSON.parse(localData));
+        return;
+      } catch (e) {
+        console.error('Error parsing wedding_guests from localStorage, reloading...', e);
       }
     }
 
-    fetch('/invitados.json')
+    fetch(`/invitados.json?v=${GUEST_DATA_VERSION}`)
       .then((res) => {
         if (!res.ok) throw new Error('Failed to load JSON');
         return res.json();
       })
       .then((data) => {
         setGuests(data);
-        if (isAdminParam || isAuthSession) {
-          localStorage.setItem('wedding_guests', JSON.stringify(data));
-        }
+        localStorage.setItem('wedding_guests', JSON.stringify(data));
       })
       .catch((err) => {
         console.warn('Using local fallback guest list:', err);
         setGuests(fallbackGuests);
-        if (isAdminParam || isAuthSession) {
-          localStorage.setItem('wedding_guests', JSON.stringify(fallbackGuests));
-        }
+        localStorage.setItem('wedding_guests', JSON.stringify(fallbackGuests));
       });
   }, [isAdminModeActive]);
 

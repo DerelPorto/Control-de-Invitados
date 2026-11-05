@@ -64,7 +64,7 @@ export default function Hero() {
         </motion.svg>
       </div>
       
-      <h1 className="couple-names">Desiré y Joel</h1>
+      <h1 className="couple-names">Desiret y Joel</h1>
       <p className="wedding-subtitle">Nuestra Boda • 04 de Diciembre, 2026</p>
 
       {/* Countdown Timer */}

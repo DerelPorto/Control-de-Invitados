@@ -30,7 +30,7 @@ export default function ResultCard({ guest, onReset }) {
 
   const handleWhatsAppRSVP = () => {
     const seatInfo = guest.asiento ? ` (${guest.asiento})` : '';
-    const message = `¡Hola Desiré y Joel! Confirmo mi asistencia a su boda. Mi nombre es ${guest.nombre} y estaré asignado(a) en la ${guest.mesa}${seatInfo}. ¡Qué gran alegría acompañarles en este día! ✨`;
+    const message = `¡Hola Desiret y Joel! Confirmo mi asistencia a su boda. Mi nombre es ${guest.nombre} y estaré asignado(a) en la ${guest.mesa}${seatInfo}. ¡Qué gran alegría acompañarles en este día! ✨`;
     const url = `https://wa.me/18299617447?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
@@ -41,7 +41,7 @@ export default function ResultCard({ guest, onReset }) {
   };
 
   const handleAddToCalendar = () => {
-    const title = 'Boda de Desiré y Joel';
+    const title = 'Boda de Desiret y Joel';
     const details = '¡Celebración de nuestra boda! Acompáñanos a compartir nuestro amor.';
     const location = 'Hodelpa Nicolás de Ovando, Santo Domingo, República Dominicana (https://maps.app.goo.gl/3Wv1B9NwKEm6h31h8)';
     const startDate = '20261204T180000'; // Dec 4, 2026 at 6:00 PM
@@ -87,7 +87,7 @@ export default function ResultCard({ guest, onReset }) {
             )}
           </div>
           <div className="ticket-bottom">
-            <span className="ticket-footer-text">Desiré y Joel • 04.12.2026</span>
+            <span className="ticket-footer-text">Desiret y Joel • 04.12.2026</span>
           </div>
         </motion.div>
 

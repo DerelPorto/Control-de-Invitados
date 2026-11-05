@@ -105,7 +105,7 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
       <!DOCTYPE html>
       <html>
       <head>
-        <title>Imprimir Invitación - Desiré y Joel</title>
+        <title>Imprimir Invitación - Desiret y Joel</title>
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
           
@@ -188,7 +188,7 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
             <img src="${qrImageSrc}" alt="Código QR">
           </div>
           <div>
-            <h2 class="footer-names">Desiré y Joel</h2>
+            <h2 class="footer-names">Desiret y Joel</h2>
             <p class="footer-date">04 de Diciembre de 2026</p>
           </div>
         </div>
@@ -786,7 +786,7 @@ export default function AdminPanel({ isAdminModeActive, guests, onUpdateGuests }
         )}
       </AnimatePresence>
 
-      <p className="copyright">Con amor • Desiré y Joel</p>
+      <p className="copyright">Con amor • Desiret y Joel</p>
     </footer>
   );
 }
